@@ -1,14 +1,20 @@
-# Python Exercise Template
+# Gerenciador de Tarefas
 
-O script principal de vocês deve estar no arquivo `main.py`.
+Nesse exercício você vai implementar um gerenciador de tarefas.
+A parte da interface gráfica já está pronta.
+Você só precisa implementar as funções que estão faltando.
+O objetivo desse exercício é praticar o uso de funções e de listas.
+No arquivo `gerenciador_tarefas.py` você vai encontrar as funções que precisam ser implementadas.
+E no arquivo `main.py` você vai encontrar a interface gráfica do programa.
+O `main.py` já está pronto, você não precisa alterar nada nele.
 
 ## 📝 Instruções 📝
 
-TODO: Add instructions
+Implemente as funções que estão faltando no arquivo `gerenciador_tarefas.py`.
 
-## 🧑‍💻 Exemplo de Execução 🧑‍💻
-
-TODO: Add example
+As funções que precisam ser implementadas tem comentários começando por `TODO:`.
+Você deve substituir esses comentários com o código da função.
+Fazendo o que é descrito no comentário.
 
 ## 🧪 Testes Automáticos 🧪
 
