@@ -16,5 +16,5 @@
   },
   "python.formatting.provider": "autopep8",
   "editor.formatOnSave": true,
-  "python.linting.pylintArgs": ["--disable", "C2401"]
+  "pylint.args": ["--disable=non-ascii-name"]
 }

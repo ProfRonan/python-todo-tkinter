@@ -3,7 +3,7 @@ Modulo que implementa um gerenciador de tarefas
 """
 
 
-lista_de_tarefas: list[dict[str, str]] = [
+lista_de_tarefas: list[dict[str]] = [
     {"prioridade": True, "tarefa": "Estudar Python"},
     {"prioridade": False, "tarefa": "Tomar banho"},
     {"prioridade": False, "tarefa": "Assistir série"},
@@ -29,7 +29,8 @@ def adicionar_tarefa(prioridade: bool, tarefa: str):
 
 def remove_tarefas(índices: tuple[int]):
     """
-    Remove várias tarefas da lista de tarefas de uma vez
+    Remove várias tarefas da lista de tarefas de uma vez, dado uma tupla de índices
+    Lança exceções caso a tarefa não exista
 
     Args:
         índices (tuple[int]): tupla de inteiros que representam os índices das tarefas
@@ -74,4 +75,9 @@ def get_lista_de_tarefas():
     """
     Retorna somente o texto das tarefas da lista de tarefas
     """
-    return tuple(item["tarefa"] for item in lista_de_tarefas)
+    texts = []
+    for tarefa in lista_de_tarefas:
+        texto = tarefa["tarefa"]
+        prioridade = tarefa["prioridade"]
+        texts.append(f"{'*' if prioridade else ''} {texto}")
+    return tuple(texts)
