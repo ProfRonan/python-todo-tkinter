@@ -2,22 +2,24 @@
 Modulo que implementa um gerenciador de tarefas
 """
 
+Tarefa = dict[str, bool | str]  # dicionário que representa uma tarefa
 
-lista_de_tarefas: list[dict[str]] = [
-    {"prioridade": True, "tarefa": "Estudar Python"},
-    {"prioridade": False, "tarefa": "Tomar banho"},
-    {"prioridade": False, "tarefa": "Assistir série"},
+lista_de_tarefas: list[Tarefa] = [
+    {"prioridade": True, "texto": "Estudar Python"},
+    {"prioridade": False, "texto": "Tomar banho"},
+    {"prioridade": False, "texto": "Assistir série"},
 ]
 
 
-def adicionar_tarefa(prioridade: bool, tarefa: str):
+def adicionar_tarefa(prioridade: bool, texto: str):
     """
     Adiciona uma tarefa na lista de tarefas
-    Lança exceções caso a prioridade seja inválida ou a tarefa já exista
+    Lança exceções caso a prioridade seja inválida ou
+    já exista tarefa com o texto especificado.
 
     Args:
         prioridade (bool): True se a tarefa tem prioridade alta, False caso contrário
-        tarefa (str): string que representa a tarefa
+        texto (str): string que representa o texto da tarefa
     """
     # TODO: coloque o código aqui para adicionar um tarefa na lista
     # Caso a prioridade não seja True ou False, levante uma exceção
@@ -27,14 +29,14 @@ def adicionar_tarefa(prioridade: bool, tarefa: str):
     raise NotImplementedError("Adicionar tarefas não implementado")
 
 
-def remove_tarefas(índices: tuple[int]):
+def remove_tarefas(índices: tuple[int, ...]):
     """
     Remove várias tarefas da lista de tarefas de uma vez, dado uma tupla de índices
     Lança exceções caso a tarefa não exista
 
     Args:
-        índices (tuple[int]): tupla de inteiros que representam os índices das tarefas
-                             que devem ser removidas da lista.
+        índices (tuple[int, ...]): tupla de inteiros que representam
+            os índices das tarefas que devem ser removidas da lista.
     """
     # TODO: coloque o código aqui para remover um tarefa na lista
     # Caso a tarefa não exista na lista, levante uma exceção do tipo ValueError
@@ -75,9 +77,9 @@ def get_lista_de_tarefas():
     """
     Retorna somente o texto das tarefas da lista de tarefas
     """
-    texts = []
+    textos: list[str] = []
     for tarefa in lista_de_tarefas:
-        texto = tarefa["tarefa"]
+        texto = tarefa["texto"]
         prioridade = tarefa["prioridade"]
-        texts.append(f"{'*' if prioridade else ''} {texto}")
-    return tuple(texts)
+        textos.append(f"{'*' if prioridade else ' '} {texto}")
+    return tuple(textos)

@@ -1,20 +1,15 @@
-"""Test file for testing the functions in main.py file"""
+"""Esse arquivo testa o arquivo gerenciador_tarefas.py"""
 
-import unittest  # for creating the test case
-import sys  # for adding the parent directory to the path
-from pathlib import Path  # for getting the path of the main.py file
-# add the parent directory to the path in order to run it from the run command in vscode
-MAIN_FILE_FOLDER = Path(__file__).parents[1].as_posix()
-sys.path.insert(1, MAIN_FILE_FOLDER)
-import gerenciador_tarefas as gt  # nopep8 pylint: disable=wrong-import-position
+import unittest  # para criar o caso de teste
+import gerenciador_tarefas as gt
 
 
-class TestFunction(unittest.TestCase):
-    """Class for testing the main.py file"""
+class TestGerenciador(unittest.TestCase):
+    """Classe para testar o módulo gerenciador_tarefas.py"""
 
     def setUp(self):
         """Inicializa os casos de teste"""
-        gt.lista_de_tarefas: list[dict[str]] = []
+        gt.lista_de_tarefas = []
 
     def test_adiciona_tarefas_lista_vazia(self):
         """Testa se é possível adicionar uma tarefa à lista vazia"""
@@ -27,7 +22,7 @@ class TestFunction(unittest.TestCase):
         tarefas = [
             {"prioridade": True, "tarefa": "Tarefa 1"},
             {"prioridade": False, "tarefa": "Tarefa 2"},
-            {"prioridade": True, "tarefa": "Tarefa 3"}
+            {"prioridade": True, "tarefa": "Tarefa 3"},
         ]
         for tarefa in tarefas:
             gt.adicionar_tarefa(tarefa["prioridade"], tarefa["tarefa"])
@@ -36,15 +31,17 @@ class TestFunction(unittest.TestCase):
     def test_adiciona_tarefa_prioridade_inválida(self):
         """Testa se é possível adicionar uma tarefa à com prioridade inválida"""
         tarefa = {"prioridade": "prioridade inválida", "tarefa": "Tarefa 1"}
-        self.assertRaises(ValueError, gt.adicionar_tarefa,
-                          tarefa["prioridade"], tarefa["tarefa"])
+        self.assertRaises(
+            ValueError, gt.adicionar_tarefa, tarefa["prioridade"], tarefa["tarefa"]
+        )
 
     def test_adiciona_tarefa_já_existente(self):
         """Testa se é possível adicionar uma tarefa com mesmo nome de outra"""
         tarefa = {"prioridade": True, "tarefa": "Tarefa 1"}
         gt.adicionar_tarefa(tarefa["prioridade"], tarefa["tarefa"])
-        self.assertRaises(ValueError, gt.adicionar_tarefa,
-                          tarefa["prioridade"], tarefa["tarefa"])
+        self.assertRaises(
+            ValueError, gt.adicionar_tarefa, tarefa["prioridade"], tarefa["tarefa"]
+        )
 
     def test_remove_tarefa_lista_vazia(self):
         """Testa se é possível remover uma tarefa da lista vazia"""
@@ -77,13 +74,14 @@ class TestFunction(unittest.TestCase):
             {"prioridade": True, "tarefa": "C"},
             {"prioridade": False, "tarefa": "B"},
             {"prioridade": True, "tarefa": "A"},
-            {"prioridade": False, "tarefa": "D"}
+            {"prioridade": False, "tarefa": "D"},
         ]
         for tarefa in tarefas:
             gt.adicionar_tarefa(tarefa["prioridade"], tarefa["tarefa"])
         gt.ordena_por_prioridade()
-        self.assertEqual(gt.lista_de_tarefas, [
-                         tarefas[2], tarefas[0], tarefas[1], tarefas[3]])
+        self.assertEqual(
+            gt.lista_de_tarefas, [tarefas[2], tarefas[0], tarefas[1], tarefas[3]]
+        )
 
 
 if __name__ == "__main__":
