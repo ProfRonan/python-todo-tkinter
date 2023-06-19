@@ -29,13 +29,13 @@ def adicionar_tarefa(prioridade: bool, texto: str):
     raise NotImplementedError("Adicionar tarefas não implementado")
 
 
-def remove_tarefas(índices: tuple[int, ...]):
+def remove_tarefas(indices: tuple[int, ...]):
     """
     Remove várias tarefas da lista de tarefas de uma vez, dado uma tupla de índices
     Lança exceções caso a tarefa não exista
 
     Args:
-        índices (tuple[int, ...]): tupla de inteiros que representam
+        indices (tuple[int, ...]): tupla de inteiros que representam
             os índices das tarefas que devem ser removidas da lista.
     """
     # TODO: coloque o código aqui para remover um tarefa na lista

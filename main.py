@@ -8,8 +8,7 @@ funções para adicionar, remover e ordenar as tarefas.
 """
 
 import tkinter as tk
-from tkinter import ttk
-from tkinter import messagebox
+from tkinter import messagebox, ttk
 
 import gerenciador_tarefas as gt
 
@@ -20,14 +19,14 @@ class Interface:
     """
 
     def __init__(self, janela: tk.Tk):
-        self.título = "Minhas tarefas"
+        self.titulo = "Minhas tarefas"
         self.tamanho = "300x400"
         self.prioridade_ativa = tk.BooleanVar(value=False)
         self.texto_tarefa = tk.StringVar(value="")
         self.lista_de_tarefas = tk.Variable(value=gt.get_lista_de_tarefas())
 
         # Configurações da janela
-        janela.title(self.título)  # Título da janela
+        janela.title(self.titulo)  # Título da janela
         janela.geometry(self.tamanho)  # Tamanho da janela
 
         # Criando os widgets, que são os objetos da interface
@@ -40,13 +39,13 @@ class Interface:
             quadro_adicionar_tarefa, text="Prioritária", variable=self.prioridade_ativa
         )
         # 4. Rótulo para o campo de tarefa
-        rótulo_tarefa = ttk.Label(quadro_adicionar_tarefa, text="Tarefa:")
+        rotulo_tarefa = ttk.Label(quadro_adicionar_tarefa, text="Tarefa:")
         # 5. Campo para digitar um tarefa
         campo_tarefa = ttk.Entry(
             quadro_adicionar_tarefa, textvariable=self.texto_tarefa
         )
         # 6. Botão de adicionar tarefa
-        botão_adicionar_tarefa = ttk.Button(
+        botao_adicionar_tarefa = ttk.Button(
             quadro, text="Adicionar tarefa", command=self.adiciona_tarefa
         )
         # 7. Quadro para guardar a lista de tarefas
@@ -58,20 +57,20 @@ class Interface:
             selectmode="extended",
         )
         # 9. Botão de remover tarefa
-        botão_remover_tarefa = ttk.Button(
+        botao_remover_tarefa = ttk.Button(
             quadro, text="Remover tarefa", command=self.remove_tarefa
         )
 
         # Organizando os widgets na janela
         quadro.grid(column=0, row=0)
         quadro_adicionar_tarefa.grid(column=0, row=0, columnspan=3, padx=10, pady=10)
-        rótulo_tarefa.grid(column=0, row=0)
+        rotulo_tarefa.grid(column=0, row=0)
         campo_tarefa.grid(column=1, row=0, sticky="ew")
         check_prioridade.grid(column=2, row=0, sticky="e")
-        botão_adicionar_tarefa.grid(column=1, row=1)
+        botao_adicionar_tarefa.grid(column=1, row=1)
         quadro_lista_tarefas.grid(column=0, columnspan=3, row=2)
         self.list_box_lista_tarefas.grid(column=0, row=0)
-        botão_remover_tarefa.grid(column=1, row=3, pady=10)
+        botao_remover_tarefa.grid(column=1, row=3, pady=10)
 
     def atualiza_tarefas(self):
         """
@@ -102,10 +101,10 @@ class Interface:
         Remove uma ou mais tarefas da lista de tarefas ativamente selecionadas.
         """
         print("Botão de remover tarefa clicado")
-        índices = self.list_box_lista_tarefas.curselection()
-        print("Tentando remover tarefa com índices", índices)
+        indices = self.list_box_lista_tarefas.curselection()
+        print("Tentando remover tarefa com índices", indices)
         try:
-            gt.remove_tarefas(índices)
+            gt.remove_tarefas(indices)
         except (NotImplementedError, ValueError) as error:
             messagebox.showerror("Erro", str(error))
         self.atualiza_tarefas()
