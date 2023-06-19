@@ -83,7 +83,3 @@ class TestGerenciador(unittest.TestCase):
         self.assertEqual(
             gt.lista_de_tarefas, [tarefas[2], tarefas[0], tarefas[1], tarefas[3]]
         )
-
-
-if __name__ == "__main__":
-    unittest.main()
